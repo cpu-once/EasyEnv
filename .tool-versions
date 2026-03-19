@@ -1,0 +1,5 @@
+nodejs lts
+java latest:temurin-25
+python latest:3.12
+rust 1.94.0
+golang 1.26.1
