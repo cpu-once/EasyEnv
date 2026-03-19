@@ -29,4 +29,7 @@ source "$SCRIPT_DIR/03_configure_env_vars.zsh"
 zsh "$SCRIPT_DIR/04_install_runtimes.zsh"
 zsh "$SCRIPT_DIR/05_set_globals.zsh"
 
+# Phase 6: Run integration tests as a child process
+zsh "$SCRIPT_DIR/06_validate_environment.zsh"
+
 echo "✅ Provisioning completed successfully. Execute 'source ~/.zshrc' to finaliz the shell environment."
