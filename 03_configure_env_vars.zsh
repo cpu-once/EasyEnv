@@ -13,6 +13,24 @@ append_env_var() {
         echo "$export_command" >> "$ZSHRC_FILE"
     fi
 }
+# ---------------------------------------------------------
+# 0. ASDF Core Configuration (Added for pnpm/shim resolution)
+# ---------------------------------------------------------
+# Homebrew 설치 경로를 기반으로 asdf.sh 위치 파악
+if command -v brew >/dev/null; then
+    ASDF_SH_PATH="$(brew --prefix asdf)/libexec/asdf.sh"
+    
+    if [[ -f "$ASDF_SH_PATH" ]]; then
+        # 1) .zshrc에 영구 기록 (중복 방지)
+        append_env_var "asdf.sh" ". $ASDF_SH_PATH"
+        
+        # 2) 현재 설치 세션에 즉시 로드 (Phase 4, 5, 6에서 asdf 명령어를 쓰기 위함)
+        . "$ASDF_SH_PATH"
+        echo "   ✅ asdf core sourced and persisted."
+    else
+        echo "   ❌ ERROR: asdf.sh not found at $ASDF_SH_PATH"
+    fi
+fi
 
 # 1. Java Configuration
 append_env_var "set-java-home.zsh" ". ~/.asdf/plugins/java/set-java-home.zsh"
