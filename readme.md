@@ -4,11 +4,10 @@
 - main.sh을 실행하면 됩니다. - main.sh Code 확인 필수
 
 #### To - Do
-- .zshrc에 이것저것 변수 집어 넣는거 방법 대신 zsrhc에 sh-asdf 이런 식으로 파일로 환경들 주입받게 만들기
+- .zshrc - env-variable - interpolation
 - 단계별 sh들 실패시 어떻게 롤백할건지 롤백 쉘도 함께 짜기
 - 삭제 쉘들도 제작하기
 - 햇갈리는 문법들 정리
 - zsh을 쓰지만, bash로 동작하게 만들기
-
 
 #### 설치되는 컴파일러와 빌드도구, 패키지 매니저, 목록 정리
