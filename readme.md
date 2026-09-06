@@ -10,7 +10,6 @@
 [![Powered by asdf](https://img.shields.io/badge/powered%20by-asdf-F16436)](https://asdf-vm.com)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=amosQP_langtoolchain&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=amosQP_langtoolchain)
 
-**한국어** | [English](readme.en.md)
 
 `git clone`도, 수동 설치도 필요 없습니다. 터미널에 한 줄 붙여넣으면 끝.
 
