@@ -1,9 +1,10 @@
 ---
 id: TASK-155.2
 title: 해소 확인된 이슈에 근거 코멘트 남기고 close
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-09-06 01:33'
+updated_date: '2026-09-06 01:38'
 labels: []
 dependencies:
   - TASK-155.1

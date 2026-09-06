@@ -138,5 +138,19 @@ jobs:
                 continue
               fi
 
-              echo "candidate for close: issue #${number} (SonarCloud key=${key}, status=${status}, resolution=${resolution:-N/A})"
+              tmp_comment="$(mktemp)"
+              {
+                printf 'SonarCloud에서 이 이슈가 해소된 것으로 확인되어 자동으로 close합니다\n'
+                printf '(decision-18 파이프라인 - close 방향 동기화).\n\n'
+                printf -- '- **SonarCloud status**: `%s`\n' "$status"
+                printf -- '- **SonarCloud resolution**: `%s`\n' "${resolution:-N/A}"
+                printf -- '- **SonarCloud 이슈 key**: `%s`\n' "$key"
+              } > "$tmp_comment"
+              if ! gh issue comment "$number" --repo "${{ github.repository }}" --body-file "$tmp_comment"; then
+                rm -f "$tmp_comment"
+                continue
+              fi
+              rm -f "$tmp_comment"
+
+              gh issue close "$number" --repo "${{ github.repository }}" || continue
             done
