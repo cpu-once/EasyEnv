@@ -78,7 +78,8 @@ ensure_brew_on_path
 #######################################
 fetch_verified_homebrew_installer() {
   local dest="$1" actual_sha256
-  curl -fsSL --max-time "$LT_DOWNLOAD_TIMEOUT" -o "$dest" "$HOMEBREW_INSTALL_URL" || return 1
+  curl -fsSL --proto '=https' --proto-redir '=https' --tlsv1.2 \
+    --max-time "$LT_DOWNLOAD_TIMEOUT" -o "$dest" "$HOMEBREW_INSTALL_URL" || return 1
   actual_sha256="$(shasum -a 256 "$dest" | awk '{print $1}')"
   if [ "$actual_sha256" != "$HOMEBREW_INSTALL_SHA256" ]; then
     log "  Homebrew installer checksum mismatch: expected" \

@@ -76,11 +76,20 @@ Describe 'scripts/install/01_bootstrap_asdf.sh'
     # one.
     It 'passes --max-time LT_DOWNLOAD_TIMEOUT to the installer'\
 ' fetch, like every other curl call in this file'
-      fetch_line="$(grep -n 'curl -fsSL' "$SCRIPT" |
+      fetch_line="$(grep -A1 'curl -fsSL' "$SCRIPT" |
         grep 'HOMEBREW_INSTALL_URL')"
       When call echo "$fetch_line"
       The output should include '--max-time'
       The output should include 'LT_DOWNLOAD_TIMEOUT'
+    End
+
+    It 'enforces HTTPS on the installer fetch, including across redirects'\
+' (SonarCloud S6506)'
+      fetch_block="$(awk '/curl -fsSL/{print; getline; print}' "$SCRIPT")"
+      When call echo "$fetch_block"
+      The output should include "--proto '=https'"
+      The output should include "--proto-redir '=https'"
+      The output should include '--tlsv1.2'
     End
   End
 End
