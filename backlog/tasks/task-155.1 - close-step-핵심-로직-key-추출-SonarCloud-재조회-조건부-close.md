@@ -1,9 +1,10 @@
 ---
 id: TASK-155.1
 title: 'close-step 핵심 로직: key 추출 -> SonarCloud 재조회 -> 조건부 close'
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-09-06 01:33'
+updated_date: '2026-09-06 01:35'
 labels: []
 dependencies: []
 parent_task_id: TASK-155

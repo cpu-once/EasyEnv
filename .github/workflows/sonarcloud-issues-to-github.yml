@@ -96,3 +96,47 @@ jobs:
             fi
             page=$((page + 1))
           done
+
+      - name: Close GitHub Issues whose SonarCloud issue is resolved
+        # decision-18: 발행 방향(위 step)은 그대로 두고, 이미 발행된 label:sonarcloud
+        # 이슈 중 SonarCloud 쪽에서 해소된 것을 찾아 close한다. 본문에서 key를 못
+        # 뽑으면(사람이 본문을 고쳤거나 패턴이 없는 경우) 추측하지 않고 조용히 skip한다.
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: |
+          set -eu
+          org="amosqp"
+          project="amosQP_langtoolchain"
+
+          gh issue list --repo "${{ github.repository }}" \
+            --label sonarcloud --state open --json number,body \
+            | jq -c '.[]' | while IFS= read -r issue; do
+              number="$(printf '%s' "$issue" | jq -r '.number')"
+              body="$(printf '%s' "$issue" | jq -r '.body')"
+
+              key="$(printf '%s' "$body" \
+                | grep -oE "\\*\\*SonarCloud 이슈 key\\*\\*: \`[^\`]+\`" \
+                | sed -E "s/.*\`([^\`]+)\`.*/\\1/")"
+              if [ -z "$key" ]; then
+                # key를 본문에서 찾지 못함 - 추측으로 닫지 않고 skip (decision-18)
+                continue
+              fi
+
+              if [ -n "${SONAR_TOKEN:-}" ]; then
+                response="$(curl -fsS -u "${SONAR_TOKEN}:" \
+                  "https://sonarcloud.io/api/issues/search?organization=${org}&componentKeys=${project}&issues=${key}")" || continue
+              else
+                response="$(curl -fsS \
+                  "https://sonarcloud.io/api/issues/search?organization=${org}&componentKeys=${project}&issues=${key}")" || continue
+              fi
+
+              status="$(printf '%s' "$response" | jq -r '.issues[0].status // empty')"
+              resolution="$(printf '%s' "$response" | jq -r '.issues[0].resolution // empty')"
+
+              if [ "$status" != "CLOSED" ]; then
+                continue
+              fi
+
+              echo "candidate for close: issue #${number} (SonarCloud key=${key}, status=${status}, resolution=${resolution:-N/A})"
+            done

@@ -1,9 +1,10 @@
 ---
 id: TASK-155
 title: sonarcloud-issues-to-github.yml에 FIXED 이슈 자동-close step 추가
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-09-06 01:32'
+updated_date: '2026-09-06 01:35'
 labels: []
 milestone: m-19
 dependencies: []
