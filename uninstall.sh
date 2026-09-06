@@ -1,7 +1,8 @@
 #!/usr/bin/env sh
 # langtoolchain — one-line uninstaller
 #
-#   curl -fsSL https://raw.githubusercontent.com/amosQP/langtoolchain/main/uninstall.sh | sh
+#   curl -fsSL --proto '=https' --proto-redir '=https' --tlsv1.2 \
+#     https://raw.githubusercontent.com/amosQP/langtoolchain/main/uninstall.sh | sh
 #
 # Thin entry point — real logic lives in scripts/uninstall/*.sh. See
 # install.sh (its sibling) for a more detailed line-by-line explanation of

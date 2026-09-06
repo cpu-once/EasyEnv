@@ -18,7 +18,8 @@
 <br>
 
 ```zsh
-curl -fsSL https://raw.githubusercontent.com/amosQP/langtoolchain/main/install.sh | sh
+curl -fsSL --proto '=https' --proto-redir '=https' --tlsv1.2 \
+  https://raw.githubusercontent.com/amosQP/langtoolchain/main/install.sh | sh
 ```
 
 <br>
@@ -55,7 +56,8 @@ curl -fsSL https://raw.githubusercontent.com/amosQP/langtoolchain/main/install.s
 ## 🚀 빠른 시작
 
 ```zsh
-curl -fsSL https://raw.githubusercontent.com/amosQP/langtoolchain/main/install.sh | sh
+curl -fsSL --proto '=https' --proto-redir '=https' --tlsv1.2 \
+  https://raw.githubusercontent.com/amosQP/langtoolchain/main/install.sh | sh
 ```
 
 로컬에 이미 클론해뒀다면:
@@ -160,7 +162,8 @@ Python 컴파일에 필요한 Homebrew 패키지(`openssl`, `readline`, `sqlite3
 > `rm -rf ~/.asdf`를 직접 실행하세요.
 
 ```zsh
-curl -fsSL https://raw.githubusercontent.com/amosQP/langtoolchain/main/uninstall.sh | sh
+curl -fsSL --proto '=https' --proto-redir '=https' --tlsv1.2 \
+  https://raw.githubusercontent.com/amosQP/langtoolchain/main/uninstall.sh | sh
 ```
 
 실행 전 한 번 확인을 물으며(`--yes`로 생략 가능), `--dry-run`도 동일하게 지원합니다. 설치/제거

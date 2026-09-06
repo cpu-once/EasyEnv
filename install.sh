@@ -1,7 +1,8 @@
 #!/usr/bin/env sh
 # langtoolchain — one-line installer
 #
-#   curl -fsSL https://raw.githubusercontent.com/amosQP/langtoolchain/main/install.sh | sh
+#   curl -fsSL --proto '=https' --proto-redir '=https' --tlsv1.2 \
+#     https://raw.githubusercontent.com/amosQP/langtoolchain/main/install.sh | sh
 #
 # This file only gets the real installer onto disk and runs it. The actual
 # logic lives in scripts/install/*.sh (one file per responsibility) so it's
