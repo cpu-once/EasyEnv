@@ -1,9 +1,10 @@
 ---
 id: TASK-157
 title: 'docs/ 리서치 문서 작성: POSIX sh vs bash 실제 사례 조사 기록'
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-09-10 01:13'
+updated_date: '2026-09-10 01:15'
 labels: []
 milestone: m-20
 dependencies:
