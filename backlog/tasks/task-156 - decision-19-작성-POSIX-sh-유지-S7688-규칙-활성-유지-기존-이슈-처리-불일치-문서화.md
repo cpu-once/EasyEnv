@@ -1,9 +1,10 @@
 ---
 id: TASK-156
 title: 'decision-19 작성: POSIX sh 유지 + S7688 규칙 활성 유지 + 기존 이슈 처리 불일치 문서화'
-status: To Do
+status: Done
 assignee: []
 created_date: '2026-09-10 01:13'
+updated_date: '2026-09-10 01:15'
 labels: []
 milestone: m-20
 dependencies: []
@@ -23,3 +24,9 @@ backlog decision create로 decision-19 스캐폴딩 생성 후(CLI가 title/stat
 2) S7688 규칙을 Quality Profile에서 비활성화하지 않고 활성 유지하기로 한 결정 — 오탐이어도 향후 실수로 [[가 들어오는 걸 잡는 회귀 탐지 카나리아 역할(m-14 check-hardcoded-paths.sh 린트와 같은 성격). 사용자가 처음엔 Won't Fix+규칙비활성화를 검토하다가 '아니 S7688은 오탐이라도 탐지하는걸로하자'로 최종 결정.
 3) 기존 14건(S7688) + 이미 고친 1건(S6506, 이슈 #7)의 최종 처리 상태 기록 — 사용자가 SonarCloud는 전혀 안 건드리고 GitHub Issue만 수동으로 close함('아니 아무것도 안건들고 그냥 깃헙이슈에서 닫아놓음'). 그 결과 SonarCloud API로 재확인한 실측치: shelldre:S7688 14건이 resolved=false로 여전히 열려 있고, 대응 GitHub Issue 14개+#7은 전부 CLOSED. 이 불일치(SonarCloud=열림/GitHub=닫힘)는 의도적 — decision-18의 자동 동기화 파이프라인(TASK-155)이 이후에도 이 14건을 재발행하거나 잘못 건드리지 않는 이유(발행 step은 --state all로 기존 존재 확인, close step은 --state open만 순회)까지 명시해서, 나중에 이 불일치를 보고 헷갈려서 '고치려는' 사람이 없게 한다.
 <!-- SECTION:DESCRIPTION:END -->
+
+## Final Summary
+
+<!-- SECTION:FINAL_SUMMARY:BEGIN -->
+decision-19 작성 완료 - POSIX sh 유지, SonarCloud shelldre:S7688 룰은 Quality Profile 비활성화 안 하고 활성 유지(회귀 탐지 카나리아), 기존 14건(S7688)+1건(S6506, 이슈#7)은 SonarCloud 쪽 안 건드리고 GitHub Issue만 사용자가 수동 close한 의도적 불일치 상태를 실측치(2026-09-10 기준 SonarCloud API: 14건 resolved=false, GitHub: 전부 CLOSED)와 함께 기록. decision-13/14/18, TASK-71 상호 참조.
+<!-- SECTION:FINAL_SUMMARY:END -->
