@@ -1,10 +1,10 @@
 ---
 id: TASK-157
 title: 'docs/ 리서치 문서 작성: POSIX sh vs bash 실제 사례 조사 기록'
-status: In Progress
+status: Done
 assignee: []
 created_date: '2026-09-10 01:13'
-updated_date: '2026-09-10 01:15'
+updated_date: '2026-09-10 01:23'
 labels: []
 milestone: m-20
 dependencies:
@@ -31,3 +31,9 @@ ordinal: 233000
 
 decision-19(TASK-156)가 먼저 존재해야 그 안의 공식 결론을 이 문서에서 인용/링크할 수 있으므로 TASK-156 이후에 작성.
 <!-- SECTION:DESCRIPTION:END -->
+
+## Final Summary
+
+<!-- SECTION:FINAL_SUMMARY:BEGIN -->
+docs/posix-sh-vs-bash-research.md 작성 완료 - rustup-init.sh 실제 인용문(WebFetch로 원문 확인), nvm과의 대비, oneuptime.com 판단 기준, SonarCloud S7688/S6506 룰 메타데이터(라이브 API로 재검증), set -eu/dash 실증 테스트 결과(if-조건문 vs 가드절 형태의 차이) 전부 원자료 그대로 수록. 사용자가 지적한 SonarCloud 룰 createdAt 날짜(2025-10~11월)는 라이브 API 재조회로 두 차례 재확인 완료 - RSPEC 카탈로그 등록일이라 이 프로젝트의 SonarCloud 도입일(2026-09)보다 이른 게 정상.
+<!-- SECTION:FINAL_SUMMARY:END -->
